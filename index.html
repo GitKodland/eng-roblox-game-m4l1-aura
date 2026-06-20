@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Конструктор Аур Ultra PRO Max (Roblox Style)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="panel">
+        <h2>🧙 3D</h2>
+
+        <div class="control">
+            <label>🎨 Цвет элементов</label>
+            <input type="color" id="color" value="#7C3AED">
+        </div>
+
+        <div class="control">
+            <label>✨ Количество частиц</label>
+            <input type="range" id="count" min="10" max="600" value="250">
+        </div>
+
+        <div class="control">
+            <label>⚡ Скорость времени</label>
+            <input type="range" id="speed" min="1" max="10" value="4">
+        </div>
+
+        <div class="control">
+            <label>📏 Размер частиц</label>
+            <input type="range" id="size" min="1" max="15" value="5">
+        </div>
+
+        <div class="control">
+            <label>🔆 Радиус ауры</label>
+            <input type="range" id="glow" min="10" max="50" value="25">
+        </div>
+
+        <div class="control">
+            <label>⭕ Вид частиц</label>
+            <select id="shape">
+                <option value="cube">Блоки (Roblox Cube)</option>
+                <option value="sphere">Сферы света</option>
+                <option value="fire">Языки пламени</option>
+                <option value="star">Звездная пыль</option>
+            </select>
+        </div>
+
+        <div class="control">
+            <label>🌪️ Траектория движения</label>
+            <select id="direction">
+                <option value="up">Вверх (Энергия)</option>
+                <option value="down">Вниз (Водопад)</option>
+                <option value="inward">Внутрь (Поглощение)</option>
+            </select>
+        </div>
+
+        <div class="control">
+            <label>💥 Эффект поведения</label>
+            <select id="fxMode">
+                <option value="smooth">Плавный поток</option>
+                <option value="pulse">Взрывная пульсация</option>
+                <option value="chaos">Хаотичное мерцание</option>
+            </select>
+        </div>
+
+        <div class="control">
+            <label>🐱 Магический Питомец</label>
+            <select id="pet">
+                <option value="none">Один</option>
+                <option value="cubeSp">Кубический дух</option>
+                <option value="wisp">Энергетический сгусток</option>
+            </select>
+        </div>
+
+        <div class="control">
+            <label>🗺️ Задний фон (Локация)</label>
+            <select id="biome">
+                <option value="space">Космическая бездна</option>
+                <option value="neon">Цифровая матрица</option>
+                <option value="dark">Темная комната</option>
+            </select>
+        </div>
+
+        <div class="control">
+            <label>👕 Костюм (Скин)</label>
+            <select id="outfit">
+                <option value="default">Маг (Обычный)</option>
+                <option value="noob">Roblox Noob (Классика)</option>
+                <option value="knight">Рыцарь Бездны</option>
+                <option value="void">Демон (Неон)</option>
+            </select>
+        </div>
+
+        <div class="control">
+            <label>🎩 Головной убор</label>
+            <select id="hat">
+                <option value="none">Без шапки</option>
+                <option value="wizardHat">Колпак волшебника</option>
+                <option value="horns">Демонические рога</option>
+            </select>
+        </div>
+
+        <div class="control">
+            <label>⚔️ Экипировать оружие</label>
+            <select id="weapon">
+                <option value="none">Пустые руки</option>
+                <option value="staff">Магический посох</option>
+                <option value="lightsaber">Световой меч</option>
+                <option value="sword">Двуручный меч</option>
+            </select>
+        </div>
+
+        <div class="control">
+            <label>🏃 Анимация (Поза)</label>
+            <select id="pose">
+                <option value="wizard">Магическая стойка</option>
+                <option value="float">Левитация (Парение)</option>
+                <option value="combat">Боевая готовность</option>
+                <option value="dance">Брейк-данс</option>
+            </select>
+        </div>
+
+        <button id="randomBtn">🎲 Случайный Персонаж</button>
+
+        <hr>
+
+        <div class="control">
+            <label>🔮 Магическое заклинание</label>
+            <input type="text" id="spell" placeholder="Я повелитель молний!">
+            <button id="speakBtn">Активировать Ульту</button>
+        </div>
+
+        <div class="power" id="power">Сила ауры: 50</div>
+    </div>
+
+    <div class="scene">
+        <div id="speech"></div>
+        <div id="canvas3d"></div>
+        <div class="hint">Зажмите левую кнопку мыши для вращения камеры 🎥</div>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
