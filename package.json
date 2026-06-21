@@ -1,0 +1,10 @@
+{
+  "name": "aura-lab",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node tools/serve.cjs",
+    "test": "node --test tests/project.test.mjs"
+  }
+}
