@@ -1,151 +1,167 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Конструктор Аур Ultra PRO Max (Roblox Style)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#080b14">
+    <meta name="description" content="Интерактивная лаборатория Roblox-аур">
+    <title>AURA//LAB — конструктор Roblox-аур</title>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="app-shell">
+    <header class="topbar">
+        <a class="brand" href="#" aria-label="AURA LAB">
+            <span class="brand-mark">A</span>
+            <span><strong>AURA//LAB</strong><small>Roblox energy forge</small></span>
+        </a>
 
-<div class="container">
-
-    <div class="panel">
-        <h2>🧙 3D</h2>
-
-        <div class="control">
-            <label>🎨 Цвет элементов</label>
-            <input type="color" id="color" value="#7C3AED">
+        <div class="aura-identity">
+            <input id="auraName" value="Фиолетовый импульс" maxlength="28" aria-label="Название ауры">
+            <span class="rank-badge" id="rankBadge">EPIC</span>
         </div>
 
-        <div class="control">
-            <label>✨ Количество частиц</label>
-            <input type="range" id="count" min="10" max="600" value="250">
+        <div class="top-actions">
+            <button class="icon-button" id="saveBtn" title="Сохранить">💾<span>Сохранить</span></button>
+            <button class="icon-button" id="shareBtn" title="Скопировать код">🔗<span>Код</span></button>
+            <button class="icon-button" id="photoBtn" title="Скачать PNG">📸<span>Фото</span></button>
         </div>
+    </header>
 
-        <div class="control">
-            <label>⚡ Скорость времени</label>
-            <input type="range" id="speed" min="1" max="10" value="4">
-        </div>
+    <main class="workspace">
+        <aside class="sidebar">
+            <nav class="tabs" aria-label="Настройки конструктора">
+                <button class="tab active" data-tab="aura"><span>✦</span>Аура</button>
+                <button class="tab" data-tab="hero"><span>◈</span>Герой</button>
+                <button class="tab" data-tab="world"><span>⌁</span>Мир</button>
+                <button class="tab" data-tab="magic"><span>⚡</span>Магия</button>
+            </nav>
 
-        <div class="control">
-            <label>📏 Размер частиц</label>
-            <input type="range" id="size" min="1" max="15" value="5">
-        </div>
+            <div class="panel-scroll">
+                <section class="tab-panel active" data-panel="aura">
+                    <div class="section-heading">
+                        <div><span class="eyebrow">Быстрый старт</span><h2>Стиль ауры</h2></div>
+                        <button class="mini-button" id="mutateBtn">🧬 Мутация</button>
+                    </div>
 
-        <div class="control">
-            <label>🔆 Радиус ауры</label>
-            <input type="range" id="glow" min="10" max="50" value="25">
-        </div>
+                    <div class="preset-grid" id="presetGrid">
+                        <button class="preset active" data-preset="void"><i style="--c:#8b5cf6"></i><span>Void King</span></button>
+                        <button class="preset" data-preset="admin"><i style="--c:#ff3b30"></i><span>Admin</span></button>
+                        <button class="preset" data-preset="galaxy"><i style="--c:#22d3ee"></i><span>Galaxy</span></button>
+                        <button class="preset" data-preset="toxic"><i style="--c:#84cc16"></i><span>Toxic</span></button>
+                    </div>
 
-        <div class="control">
-            <label>⭕ Вид частиц</label>
-            <select id="shape">
-                <option value="cube">Блоки (Roblox Cube)</option>
-                <option value="sphere">Сферы света</option>
-                <option value="fire">Языки пламени</option>
-                <option value="star">Звездная пыль</option>
-            </select>
-        </div>
+                    <div class="control color-control">
+                        <label for="color">Цвет энергии <output id="colorValue">#8B5CF6</output></label>
+                        <div class="color-row">
+                            <input type="color" id="color" value="#8b5cf6">
+                            <div class="swatches">
+                                <button style="--swatch:#8b5cf6" data-color="#8b5cf6" aria-label="Фиолетовый"></button>
+                                <button style="--swatch:#22d3ee" data-color="#22d3ee" aria-label="Голубой"></button>
+                                <button style="--swatch:#f43f5e" data-color="#f43f5e" aria-label="Красный"></button>
+                                <button style="--swatch:#84cc16" data-color="#84cc16" aria-label="Зелёный"></button>
+                                <button style="--swatch:#f59e0b" data-color="#f59e0b" aria-label="Золотой"></button>
+                            </div>
+                        </div>
+                    </div>
 
-        <div class="control">
-            <label>🌪️ Траектория движения</label>
-            <select id="direction">
-                <option value="up">Вверх (Энергия)</option>
-                <option value="down">Вниз (Водопад)</option>
-                <option value="inward">Внутрь (Поглощение)</option>
-            </select>
-        </div>
+                    <div class="control">
+                        <label for="count">Плотность частиц <output id="countValue">260</output></label>
+                        <input type="range" id="count" min="20" max="600" value="260">
+                    </div>
+                    <div class="control">
+                        <label for="speed">Скорость потока <output id="speedValue">4</output></label>
+                        <input type="range" id="speed" min="1" max="10" value="4">
+                    </div>
+                    <div class="control">
+                        <label for="size">Размер частиц <output id="sizeValue">5</output></label>
+                        <input type="range" id="size" min="1" max="15" value="5">
+                    </div>
+                    <div class="control">
+                        <label for="glow">Радиус ауры <output id="glowValue">25</output></label>
+                        <input type="range" id="glow" min="10" max="50" value="25">
+                    </div>
+                    <div class="control">
+                        <label for="shape">Форма частиц</label>
+                        <select id="shape">
+                            <option value="cube">Roblox-блоки</option>
+                            <option value="sphere">Сферы света</option>
+                            <option value="fire">Языки пламени</option>
+                            <option value="star">Звёздная пыль</option>
+                        </select>
+                    </div>
+                    <div class="two-columns">
+                        <div class="control"><label for="direction">Движение</label><select id="direction"><option value="up">Вверх</option><option value="down">Вниз</option><option value="inward">Внутрь</option></select></div>
+                        <div class="control"><label for="fxMode">Поведение</label><select id="fxMode"><option value="smooth">Поток</option><option value="pulse">Пульсация</option><option value="chaos">Хаос</option></select></div>
+                    </div>
+                </section>
 
-        <div class="control">
-            <label>💥 Эффект поведения</label>
-            <select id="fxMode">
-                <option value="smooth">Плавный поток</option>
-                <option value="pulse">Взрывная пульсация</option>
-                <option value="chaos">Хаотичное мерцание</option>
-            </select>
-        </div>
+                <section class="tab-panel" data-panel="hero">
+                    <div class="section-heading"><div><span class="eyebrow">Персонаж</span><h2>Собери героя</h2></div></div>
+                    <div class="control"><label for="outfit">Костюм</label><select id="outfit"><option value="default">Маг</option><option value="noob">Roblox Noob</option><option value="knight">Рыцарь Бездны</option><option value="void">Неоновый демон</option></select></div>
+                    <div class="control"><label for="hat">Головной убор</label><select id="hat"><option value="none">Без головного убора</option><option value="wizardHat">Колпак волшебника</option><option value="horns">Демонические рога</option></select></div>
+                    <div class="control"><label for="weapon">Оружие</label><select id="weapon"><option value="none">Пустые руки</option><option value="staff">Магический посох</option><option value="lightsaber">Световой меч</option><option value="sword">Двуручный меч</option></select></div>
+                    <div class="control"><label for="pose">Анимация</label><select id="pose"><option value="wizard">Магическая стойка</option><option value="float">Левитация</option><option value="combat">Боевая готовность</option><option value="dance">Брейк-данс</option></select></div>
+                    <div class="control"><label for="pet">Спутник</label><select id="pet"><option value="none">Без питомца</option><option value="cubeSp">Кубический дух</option><option value="wisp">Энергетический сгусток</option></select></div>
+                    <button class="secondary-action" id="randomHeroBtn">🎲 Случайный герой</button>
+                </section>
 
-        <div class="control">
-            <label>🐱 Магический Питомец</label>
-            <select id="pet">
-                <option value="none">Один</option>
-                <option value="cubeSp">Кубический дух</option>
-                <option value="wisp">Энергетический сгусток</option>
-            </select>
-        </div>
+                <section class="tab-panel" data-panel="world">
+                    <div class="section-heading"><div><span class="eyebrow">Окружение</span><h2>Выбери арену</h2></div></div>
+                    <div class="biome-cards">
+                        <button class="biome-card active" data-biome="space"><span>🌌</span><strong>Бездна</strong><small>Холодный космос</small></button>
+                        <button class="biome-card" data-biome="neon"><span>🌐</span><strong>Матрица</strong><small>Неоновая сеть</small></button>
+                        <button class="biome-card" data-biome="dark"><span>⬛</span><strong>Тьма</strong><small>Ничего лишнего</small></button>
+                    </div>
+                    <select id="biome" class="visually-hidden"><option value="space">Бездна</option><option value="neon">Матрица</option><option value="dark">Тьма</option></select>
+                    <div class="control"><label for="cameraZoom">Приближение камеры <output id="cameraZoomValue">8</output></label><input type="range" id="cameraZoom" min="4" max="12" value="8"></div>
+                    <div class="control"><label for="lightPower">Яркость сцены <output id="lightPowerValue">7</output></label><input type="range" id="lightPower" min="2" max="12" value="7"></div>
+                    <button class="secondary-action" id="resetCameraBtn">⌖ Сбросить камеру</button>
+                </section>
 
-        <div class="control">
-            <label>🗺️ Задний фон (Локация)</label>
-            <select id="biome">
-                <option value="space">Космическая бездна</option>
-                <option value="neon">Цифровая матрица</option>
-                <option value="dark">Темная комната</option>
-            </select>
-        </div>
+                <section class="tab-panel" data-panel="magic">
+                    <div class="section-heading"><div><span class="eyebrow">Финальный штрих</span><h2>Создай заклинание</h2></div></div>
+                    <div class="control"><label for="spell">Фраза героя</label><textarea id="spell" maxlength="80" placeholder="Я повелитель молний!"></textarea></div>
+                    <div class="spell-chips">
+                        <button>Путь открыт!</button><button>Сила бездны!</button><button>Это мой вайб.</button>
+                    </div>
+                    <button class="ultimate-button" id="speakBtn"><span>⚡</span><strong>АКТИВИРОВАТЬ УЛЬТУ</strong><small>SPACE</small></button>
+                    <p class="panel-note">Ульта усиливает ауру, запускает ударную волну и произносит фразу героя.</p>
+                </section>
+            </div>
+        </aside>
 
-        <div class="control">
-            <label>👕 Костюм (Скин)</label>
-            <select id="outfit">
-                <option value="default">Маг (Обычный)</option>
-                <option value="noob">Roblox Noob (Классика)</option>
-                <option value="knight">Рыцарь Бездны</option>
-                <option value="void">Демон (Неон)</option>
-            </select>
-        </div>
+        <section class="scene" id="sceneFrame">
+            <div class="scene-hud">
+                <span class="live-dot"></span> LIVE PREVIEW
+            </div>
+            <div id="speech" role="status"></div>
+            <div id="canvas3d"></div>
+            <div class="power-card">
+                <div class="power-ring" id="powerRing"><span id="powerValue">64</span><small>POWER</small></div>
+                <div><span class="eyebrow">Рейтинг энергии</span><strong id="powerLabel">ЭПИЧЕСКАЯ АУРА</strong></div>
+            </div>
+            <div class="scene-tools">
+                <button id="fullscreenBtn" title="Полный экран">⛶</button>
+                <button id="sceneResetBtn" title="Сбросить камеру">⌖</button>
+            </div>
+            <div class="hint"><span>ЛКМ</span> вращение <span>колесо</span> масштаб</div>
+            <div class="shockwave" id="shockwave"></div>
+        </section>
+    </main>
 
-        <div class="control">
-            <label>🎩 Головной убор</label>
-            <select id="hat">
-                <option value="none">Без шапки</option>
-                <option value="wizardHat">Колпак волшебника</option>
-                <option value="horns">Демонические рога</option>
-            </select>
-        </div>
-
-        <div class="control">
-            <label>⚔️ Экипировать оружие</label>
-            <select id="weapon">
-                <option value="none">Пустые руки</option>
-                <option value="staff">Магический посох</option>
-                <option value="lightsaber">Световой меч</option>
-                <option value="sword">Двуручный меч</option>
-            </select>
-        </div>
-
-        <div class="control">
-            <label>🏃 Анимация (Поза)</label>
-            <select id="pose">
-                <option value="wizard">Магическая стойка</option>
-                <option value="float">Левитация (Парение)</option>
-                <option value="combat">Боевая готовность</option>
-                <option value="dance">Брейк-данс</option>
-            </select>
-        </div>
-
-        <button id="randomBtn">🎲 Случайный Персонаж</button>
-
-        <hr>
-
-        <div class="control">
-            <label>🔮 Магическое заклинание</label>
-            <input type="text" id="spell" placeholder="Я повелитель молний!">
-            <button id="speakBtn">Активировать Ульту</button>
-        </div>
-
-        <div class="power" id="power">Сила ауры: 50</div>
-    </div>
-
-    <div class="scene">
-        <div id="speech"></div>
-        <div id="canvas3d"></div>
-        <div class="hint">Зажмите левую кнопку мыши для вращения камеры 🎥</div>
-    </div>
-
+    <footer class="actionbar">
+        <button class="random-button" id="randomBtn">🎲 Полный рандом</button>
+        <div class="save-status" id="saveStatus">Настройки сохраняются локально</div>
+        <button class="reset-button" id="resetBtn">Сбросить всё</button>
+        <button class="ultimate-mobile" id="ultimateMobile">⚡ УЛЬТА</button>
+    </footer>
 </div>
 
+<div class="toast" id="toast" role="status"></div>
 <script src="script.js"></script>
 </body>
 </html>
