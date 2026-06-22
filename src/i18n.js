@@ -235,7 +235,7 @@ export function createI18n() {
         document.querySelector(".panel-note").textContent = t.misc[1];
         document.getElementById("saveStatus").textContent = t.misc[2];
         document.querySelector(".power-card .eyebrow").textContent = t.misc[3];
-        document.querySelector(".hint").innerHTML = `<span>ЛКМ</span> ${t.misc[4]} <span>wheel</span> ${t.misc[5]}`;
+        document.querySelector(".hint").innerHTML = `<span>LMB</span> ${t.misc[4]} <span>wheel</span> ${t.misc[5]}`;
 
         const buttonTargets = [
             ["#mutateBtn", `🧬 ${t.buttons[0]}`], ["#randomHeroBtn", `🎲 ${t.buttons[1]}`],
