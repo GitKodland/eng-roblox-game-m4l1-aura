@@ -1,5 +1,5 @@
 export const defaults = {
-    auraName: "Фиолетовый импульс",
+    auraName: "Violet impulse",
     auraType: "orbit",
     color: "#8b5cf6",
     count: 260,
@@ -23,7 +23,7 @@ export const defaults = {
 
 export const presets = {
     void: {
-        auraName: "Король Бездны", auraType: "rings", color: "#8b5cf6", count: 280,
+        auraName: "Void King", auraType: "rings", color: "#8b5cf6", count: 280,
         speed: 4, size: 5, glow: 28, shape: "star", direction: "inward", fxMode: "pulse",
         outfit: "void", hat: "horns", weapon: "staff", pose: "float", pet: "wisp", biome: "space"
     },
@@ -33,22 +33,22 @@ export const presets = {
         outfit: "noob", hat: "none", weapon: "lightsaber", pose: "combat", pet: "cubeSp", biome: "neon"
     },
     galaxy: {
-        auraName: "Галактический Noob", auraType: "halo", color: "#22d3ee", count: 340,
+        auraName: "Galactic Noob", auraType: "halo", color: "#22d3ee", count: 340,
         speed: 3, size: 7, glow: 38, shape: "sphere", direction: "up", fxMode: "pulse",
         outfit: "noob", hat: "wizardHat", weapon: "staff", pose: "float", pet: "wisp", biome: "space"
     },
     toxic: {
-        auraName: "Токсичный вайб", auraType: "orbit", color: "#84cc16", count: 360,
+        auraName: "Toxic Vibe", auraType: "orbit", color: "#84cc16", count: 360,
         speed: 6, size: 6, glow: 24, shape: "fire", direction: "down", fxMode: "chaos",
         outfit: "knight", hat: "horns", weapon: "sword", pose: "ninja", pet: "cubeSp", biome: "dark"
     },
     solar: {
-        auraName: "Солнечный титан", auraType: "rings", color: "#f59e0b", count: 310,
+        auraName: "Sun Titan", auraType: "rings", color: "#f59e0b", count: 310,
         speed: 5, size: 8, glow: 34, shape: "fire", direction: "up", fxMode: "pulse",
         outfit: "knight", hat: "none", weapon: "sword", pose: "hero", pet: "none", biome: "space"
     },
     frost: {
-        auraName: "Ледяное спокойствие", auraType: "halo", color: "#bfdbfe", count: 240,
+        auraName: "Icy Stillness", auraType: "halo", color: "#bfdbfe", count: 240,
         speed: 2, size: 5, glow: 40, shape: "star", direction: "down", fxMode: "smooth",
         outfit: "default", hat: "wizardHat", weapon: "staff", pose: "meditate", pet: "wisp", biome: "dark"
     }
@@ -69,8 +69,8 @@ export const randomOptions = {
 };
 
 export const funnyNames = [
-    "Налоговый некромант", "Аура последней пятницы", "Повелитель пельменей",
-    "Квантовый Noob", "Сигма Бездны", "Неоновый картофель", "Админ на минималках"
+    "Tax Necromancer", "The Aura of the Last Friday", "The Lord of Dumplings",
+    "Quantic Noob", "The Void Sigma", "Neon Fries", "Poor Man's Admin"
 ];
 
 export const controlIds = Object.keys(defaults);
